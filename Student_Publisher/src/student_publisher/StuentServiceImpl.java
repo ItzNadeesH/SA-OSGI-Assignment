@@ -99,7 +99,7 @@ public class StuentServiceImpl implements StudentService{
 	    	Student student = findStudentById(studentID);
 	    	 if (student != null) {
 	    		 enrolledStudents.remove(student);
-	    		 System.out.println("Student details updated successfully.");
+	    		 System.out.println("Student details deleted successfully.");
 	    	 } else {
 	    		 System.out.println("Student with ID " + studentID + " not found.");
 	    	 }
