@@ -22,7 +22,7 @@ public class StuentServiceImpl implements StudentService{
 	    public List<Student> getStudentAll() {
 	   
 	        System.out.printf("%-15s %-20s %-10s %-30s %-15s%n", "Student ID", "Name", "Grade", "Email", "Contact");
-	        System.out.println("----------------------------------------------------------------------------------------");
+	        System.out.println("---------------------------------------------------------------------------------------------");
 	        for (Student student : enrolledStudents) {
 	            System.out.printf("%-15s %-20s %-10s %-30s %-15s%n",
 	            		student.getsID(), student.getName(), student.getGrade(), student.getEmail(), student.getContact());

@@ -44,11 +44,11 @@ public class TeacherServiceImpl implements TeacherService {
     @Override
     public void displayTeachers() {
         
-        System.out.printf("%-15s %-20s %-10s %-30s%n", "TeacherID", "Name", "Email", "Contact No");
-        System.out.println("---------------------------------------------------------------------");
+        System.out.printf("%-15s %-20s %-30s %-30s%n", "TeacherID", "Name", "Email", "Contact No");
+        System.out.println("------------------------------------------------------------------------------------");
 
         for (Teacher teacher : registeredTeachers) {
-        	System.out.printf("%-15s %-20s %-10s %-30s%n",
+        	System.out.printf("%-15s %-20s %-30s %-30s%n",
         			teacher.getTeacherID(), teacher.getName(), teacher.getEmail(), teacher.getContact());
         }
     }

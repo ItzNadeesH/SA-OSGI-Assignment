@@ -11,7 +11,7 @@ import finance_producer.FinanceService;
 
 public class FinanceConsumerActivator implements BundleActivator {
 
-    ServiceReference serviceReference;
+    ServiceReference<?> serviceReference;
     FinanceService financeService;
 
     public void start(BundleContext context) throws Exception {
@@ -34,9 +34,7 @@ public class FinanceConsumerActivator implements BundleActivator {
         Scanner scanner = new Scanner(System.in);
 
         while (running) {
-            System.out.println("----------------------------");
-            System.out.println("Choose an action:");
-            System.out.println("----------------------------");
+        	System.out.println("\n--------------Choose an option from Finance Management--------------");
             System.out.println("1. Collect Class Fees");
             System.out.println("2. Display Paid Details");
             System.out.println("3. Calculate Total Collected Fees");
@@ -59,14 +57,13 @@ public class FinanceConsumerActivator implements BundleActivator {
                         financeService.calculateTotalCollectedFees();
                         break;
                     case 4:
-                    	int subId = financeService.selectClassId();
-                        financeService.getTotalPaidForSubject(subId);
+                        financeService.getTotalPaidForSubject();
                         break;
                     case 5:
                         running = false;
                         break;
                     default:
-                        System.out.println("Invalid choice. Please enter a number between 1 and 5.");
+                        System.out.println("Invalid choice! Please try again.");
                 }
             } catch (InputMismatchException e) {
                 System.out.print("Invalid input. Please enter a number.\n\n");

@@ -20,7 +20,6 @@ public class Activator implements BundleActivator {
 	public void start(BundleContext bundleContext) throws Exception {
 		Scanner scanner = new Scanner(System.in);
         boolean running = true;
-        System.out.println("LOGO");
         while (running) {
         	System.out.println("---------------------------------------------------------------");
             System.out.println("             ~ Welcome to NextGen Institute ~ ");
@@ -47,6 +46,7 @@ public class Activator implements BundleActivator {
                         break;
                     case 4:
                        timetable.start(bundleContext);
+                       break;
                     case 5:
                         running = false;
                         break;

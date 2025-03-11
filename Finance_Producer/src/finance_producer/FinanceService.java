@@ -5,6 +5,5 @@ public interface FinanceService {
 	public void addFinanceDetails();
 	public void showFinanceDetails();
 	public void calculateTotalCollectedFees();
-	void getTotalPaidForSubject(int subId);
-	public int selectClassId();
+	void getTotalPaidForSubject();
 }

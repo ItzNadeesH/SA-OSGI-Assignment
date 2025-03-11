@@ -6,7 +6,7 @@ import org.osgi.framework.ServiceRegistration;
 
 public class FinanceProducerActivator implements BundleActivator {
 
-    ServiceRegistration publishServiceRegistration;
+    ServiceRegistration<?> publishServiceRegistration;
 
     public void start(BundleContext context) throws Exception {
         System.out.println("Finance Producer Start");

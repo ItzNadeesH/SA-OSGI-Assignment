@@ -33,7 +33,6 @@ public class Teacher_Consumer_Activator implements BundleActivator {
 	        System.out.print("Enter your choice: ");
 	        int choice = scan.nextInt();
 	        scan.nextLine(); // Consume newline character
-	        System.out.println("  -------------------------------------------------------------------");
 	        
 	        switch (choice) {
 	            case 1:

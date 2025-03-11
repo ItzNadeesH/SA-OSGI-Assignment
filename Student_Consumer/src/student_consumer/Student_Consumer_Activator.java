@@ -9,7 +9,7 @@ import student_publisher.StudentService;
 
 public class Student_Consumer_Activator implements BundleActivator {
 
-	ServiceReference<?> serviceReference ;
+	ServiceReference<?> serviceReference;
 	private Scanner scan;
 
 	public void start(BundleContext context) throws Exception {
@@ -34,7 +34,6 @@ public class Student_Consumer_Activator implements BundleActivator {
             System.out.print("Enter your choice: ");
             int choice = scan.nextInt();
             scan.nextLine(); // Consume newline character
-            System.out.println("  -------------------------------------------------------------------");
 
             switch (choice) {
                 case 1:

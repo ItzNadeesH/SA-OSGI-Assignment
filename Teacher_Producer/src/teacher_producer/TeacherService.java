@@ -1,7 +1,5 @@
 package teacher_producer;
 
-import java.util.List;
-
 
 public interface TeacherService {
     public void displayTeachers();
