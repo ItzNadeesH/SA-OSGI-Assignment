@@ -22,7 +22,7 @@ public class Activator implements BundleActivator {
         boolean running = true;
         while (running) {
         	System.out.println("---------------------------------------------------------------");
-            System.out.println("             ~ Welcome to NextGen Institute ~ ");
+            System.out.println("             ~ Welcome to NextGen Institute ~                  ");
             System.out.println("---------------------------------------------------------------");
             System.out.println("1. Student Management");
             System.out.println("2. Staff Management");
