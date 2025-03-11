@@ -14,14 +14,14 @@ public class TeacherServiceImpl implements TeacherService {
     public TeacherServiceImpl() {
     	scan = new Scanner(System.in);
     	registeredTeachers = new ArrayList<>();
-    	 registeredTeachers.add(new Teacher("T001", "John Doe", "john.doe@example.com", "111-222-3333"));
-         registeredTeachers.add(new Teacher("T002", "Sarah Smith", "sarah.smith@example.com", "444-555-6666"));
-         registeredTeachers.add(new Teacher("T003", "Michael Brown", "michael.brown@example.com", "777-888-9999"));
+    	 registeredTeachers.add(new Teacher("T001", "John Doe", "john.doe@example.com", "111-222-3333", "Maths"));
+         registeredTeachers.add(new Teacher("T002", "Sarah Smith", "sarah.smith@example.com", "444-555-6666", "Science"));
+         registeredTeachers.add(new Teacher("T003", "Michael Brown", "michael.brown@example.com", "777-888-9999", "Geography"));
     }
 
     @Override
     public void createTeacher() {
-        String teacherID, name, email, contact;
+        String teacherID, name, email, contact, subject;
 
         System.out.println("Register New Teacher To System");
 
@@ -36,20 +36,23 @@ public class TeacherServiceImpl implements TeacherService {
 
         System.out.print("Teacher's Contact Number: ");
         contact = scan.nextLine();
+        
+        System.out.print("Teacher's Subject: ");
+        subject = scan.nextLine();
 
-        registeredTeachers.add(new Teacher(teacherID, name, email, contact));
+        registeredTeachers.add(new Teacher(teacherID, name, email, contact, subject));
     }
     
     
     @Override
     public void displayTeachers() {
         
-        System.out.printf("%-15s %-20s %-30s %-30s%n", "TeacherID", "Name", "Email", "Contact No");
-        System.out.println("------------------------------------------------------------------------------------");
+        System.out.printf("%-15s %-20s %-30s %-20s %-30s%n", "TeacherID", "Name", "Email", "Contact No", "Subject");
+        System.out.println("---------------------------------------------------------------------------------------------------------");
 
         for (Teacher teacher : registeredTeachers) {
-        	System.out.printf("%-15s %-20s %-30s %-30s%n",
-        			teacher.getTeacherID(), teacher.getName(), teacher.getEmail(), teacher.getContact());
+        	System.out.printf("%-15s %-20s %-30s %-20s %-30s%n",
+        			teacher.getTeacherID(), teacher.getName(), teacher.getEmail(), teacher.getContact(), teacher.getSubject());
         }
     }
 
@@ -98,19 +101,14 @@ public class TeacherServiceImpl implements TeacherService {
     
     
     @Override
-    public void assignCourses(String teacherID) {
+    public void assignSubject(String teacherID) {
         Teacher teacher = findTeacherById(teacherID);
         if (teacher != null) {
-                System.out.print("\nEnter subjects to assign (comma-separated): ");
-                String subjectsInput = scan.nextLine();
-                List<String> subjects = Arrays.asList(subjectsInput.split("\\s*,\\s*"));
+                System.out.print("\nEnter subjects to assign : ");
+                String subject = scan.nextLine();
 
                 // Update the assigned subjects for the teacher
-                List<String> currentSubjects = teacher.getAssignedCourses();
-                currentSubjects.addAll(subjects);
-                teacher.setAssignedCourses(currentSubjects);
-
-                // Update the file with the assigned subjects
+                teacher.setSubject(subject);
 
                 System.out.println("Subjects assigned successfully.");
             

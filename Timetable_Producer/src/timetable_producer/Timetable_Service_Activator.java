@@ -11,7 +11,7 @@ public class Timetable_Service_Activator implements BundleActivator {
 	public void start(BundleContext context) throws Exception {
 		
 		System.out.println("Timetable Service Publisher Start");
-		TimetableService publisherService = new DailyTimetable();
+		TimetableService publisherService = new TimetableServiceImpl();
 		
 		publishServiceRegistration = context.registerService(TimetableService.class.getName(), publisherService, null);	
 		

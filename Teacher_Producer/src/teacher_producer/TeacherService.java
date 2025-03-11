@@ -8,10 +8,10 @@ public interface TeacherService {
 
     void editTeacher();
 
-    void assignCourses(String teacherID);
-
     void deleteTeacher(String teacherID);
     
     void searchTeacher(String teacherID);
+
+	void assignSubject(String teacherID);
     
 }

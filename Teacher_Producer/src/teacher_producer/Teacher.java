@@ -1,23 +1,19 @@
 package teacher_producer;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-
 public class Teacher {
     private String teacherID;
     private String name;
     private String contact;
     private String email;
-    private List<String> assignedSubjects;
+    private String subject;
 
-    public Teacher(String teacherID, String name, String email,String contact) {
+    public Teacher(String teacherID, String name, String email,String contact, String subject) {
         super();
     	this.teacherID = teacherID;
         this.name = name;
         this.email = email;
         this.contact = contact;
-        this.assignedSubjects = new ArrayList<>();
+        this.subject = subject;
     }
 
 	public String getTeacherID() {
@@ -52,13 +48,11 @@ public class Teacher {
 		this.email = email;
 	}
 
-	public void setAssignedCourses(List<String> subjects) {
-		this.assignedSubjects = subjects;
+	public void setSubject(String subject) {
+		this.subject = subject;
 	}
 
-	public List<String> getAssignedCourses() {
-		return this.assignedSubjects;
+	public String getSubject() {
+		return this.subject;
 	}
-
-
 }

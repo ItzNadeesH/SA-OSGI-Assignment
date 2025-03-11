@@ -6,19 +6,24 @@ import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 import student_publisher.StudentService;
+import timetable_producer.TimetableService;
 
 public class Student_Consumer_Activator implements BundleActivator {
 
-	ServiceReference<?> serviceReference;
+	ServiceReference<?> stundetServiceReference;
+	ServiceReference<?> timetableServiceReference;
 	private Scanner scan;
 
 	public void start(BundleContext context) throws Exception {
 		
 		System.out.println("Student Consumer Start");
-		serviceReference = context.getServiceReference(StudentService.class.getName());
-		StudentService studentService = (StudentService)context.getService(serviceReference);
+		stundetServiceReference = context.getServiceReference(StudentService.class.getName());
+		StudentService studentService = (StudentService)context.getService(stundetServiceReference);
+		
+		timetableServiceReference = context.getServiceReference(TimetableService.class.getName());
+		TimetableService timetableService = (TimetableService)context.getService(timetableServiceReference);
 			
-		 scan = new Scanner(System.in);
+		scan = new Scanner(System.in);
 		
 	    while (true) {
             System.out.println("\n--------------Choose an option from Student Management--------------");
@@ -29,7 +34,8 @@ public class Student_Consumer_Activator implements BundleActivator {
             System.out.println("5. Delete Student");
             System.out.println("6. Enroll Student for Subjects");
             System.out.println("7. Get Student's enrolled Subjects");
-            System.out.println("8. Exit");
+            System.out.println("8. View Timetables");
+            System.out.println("9. Exit");
             
             System.out.print("Enter your choice: ");
             int choice = scan.nextInt();
@@ -68,6 +74,11 @@ public class Student_Consumer_Activator implements BundleActivator {
                 	studentService.getSubjectsByStudentId(id);
                 	break;
                 case 8:
+                	System.out.print("Enter the grade (6-11): ");
+   	             	int grade = scan.nextInt();
+   	             	timetableService.displayTimetable(grade);;
+                	break;
+                case 9:
                     System.out.println("Exiting...");
                     return;
                 default:
@@ -80,7 +91,8 @@ public class Student_Consumer_Activator implements BundleActivator {
 	public void stop(BundleContext context) throws Exception {
 		
 		System.out.println("Student Subscriber Stop");
-		context.ungetService(serviceReference);
+		context.ungetService(stundetServiceReference);
+		context.ungetService(timetableServiceReference);
 		
 	}
 

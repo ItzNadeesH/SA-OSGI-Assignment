@@ -6,19 +6,26 @@ import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 import teacher_producer.TeacherService;
+import timetable_producer.TimetableService;
 
 public class Teacher_Consumer_Activator implements BundleActivator {
 	 
-	ServiceReference<?> serviceReference ;
+	ServiceReference<?> teacherServiceReference;
+	ServiceReference<?> timetableServiceReference;
 	private Scanner scan;
     
 	public void start(BundleContext context) throws Exception {
 	    System.out.println("Teacher Subscriber Start");
-	    serviceReference = context.getServiceReference(TeacherService.class.getName());
 	    
-	    TeacherService teacherService = (TeacherService) context.getService(serviceReference);
+	    teacherServiceReference = context.getServiceReference(TeacherService.class.getName());
+	    TeacherService teacherService = (TeacherService) context.getService(teacherServiceReference);
+	    
+	    
+	    timetableServiceReference = context.getServiceReference(TimetableService.class.getName());
+	    TimetableService timetableService = (TimetableService) context.getService(timetableServiceReference);
+	    
+	    
 	    scan = new Scanner(System.in);
-        
         
 	    while (true) {
 	    	System.out.println("\n--------------Choose an option from Staff Management--------------");
@@ -28,7 +35,8 @@ public class Teacher_Consumer_Activator implements BundleActivator {
 	        System.out.println("4. Delete Teacher");
 	        System.out.println("5. Assign Subjects for Teacher");
 	        System.out.println("6. Search Teacher");
-	        System.out.println("7. Exit");
+	        System.out.println("7. View Timetables");
+	        System.out.println("8. Exit");
 
 	        System.out.print("Enter your choice: ");
 	        int choice = scan.nextInt();
@@ -53,7 +61,7 @@ public class Teacher_Consumer_Activator implements BundleActivator {
 	            	System.out.println("\nAssign Subject to the Teacher");
 	            	System.out.print("\nEnter the ID of the teacher: ");
 	                String tID = scan.nextLine();
-	                teacherService.assignCourses(tID);
+	                teacherService.assignSubject(tID);
 	                break;
 	            case 6:
 	            	System.out.println("\nSearch Teacher");
@@ -62,6 +70,9 @@ public class Teacher_Consumer_Activator implements BundleActivator {
 	            	teacherService.searchTeacher(tchID);
 	            	break;
 	            case 7:
+	            	timetableService.displayAllTimetables();
+	                return;
+	            case 8:
 	            	System.out.println("\nExiting...");
 	                return;
 	            default:
@@ -74,7 +85,8 @@ public class Teacher_Consumer_Activator implements BundleActivator {
  
 	public void stop(BundleContext context) throws Exception {
 		System.out.println("Student Subscriber Stop");
-		context.ungetService(serviceReference);
+		context.ungetService(teacherServiceReference);
+		context.ungetService(timetableServiceReference);
 	}
  
 }

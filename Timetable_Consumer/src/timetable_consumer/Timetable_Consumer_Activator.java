@@ -25,33 +25,40 @@ public class Timetable_Consumer_Activator implements BundleActivator {
         	scan = new Scanner(System.in);
    		 	
 	   		 System.out.println("\n--------------Choose an option from Timetable Management--------------");
-	         System.out.println("1. Display Timetable");
-	         System.out.println("2. Assign Teachers to Subject");
-	         System.out.println("3. Display Teachers with Subjects");
-	         System.out.println("4. Update Teacher Assign to Subject");
-	         System.out.println("5. Exit");
+	         System.out.println("1. Display Timetable All Timetables");
+	         System.out.println("2. Display Timetable by Grade");
+	         System.out.println("3. Create a Timetable");
+	         System.out.println("4. Delete Timetable");
+	         System.out.println("5. View All Teachers");
+	         System.out.println("6. Exit");
 	         
 	         System.out.print("Enter your choice: ");
 	         int choice = scan.nextInt();
 	         scan.nextLine();
 	         switch (choice) {
 	         case 1:
-	             System.out.print("Enter the grade (6-11): ");
-	             int grade = scan.nextInt();
-	             timetableService.displayTimetable(grade);
+	             
+	             timetableService.displayAllTimetables();
 	             break;
 	         case 2:
-	         	teacherService.displayTeachers();
-	         	// teacherService.assignTeachers();
+	        	 System.out.print("Enter the grade (6-11): ");
+	             int grade = scan.nextInt();
+	        	 timetableService.displayTimetable(grade);
 	             break;
 	         case 3:
-	         	System.out.print("Enter the grade (6-11): ");
-	             teacherService.displayTeachers();
+	        	 System.out.print("Enter the grade (6-11): ");
+	             int grde = scan.nextInt();
+	        	 timetableService.createNewTimetable(grde);
 	             break;
 	         case 4:
-	        	 teacherService.editTeacher();
+	        	 System.out.print("Enter the grade (6-11): ");
+	             int grd = scan.nextInt();
+	        	 timetableService.deleteTimetable(grd);
 	             break;
 	         case 5:
+	        	 teacherService.displayTeachers();
+	             break;
+	         case 6:
 	        	 System.out.println("Exiting...");
 	             return;
 	         default:
